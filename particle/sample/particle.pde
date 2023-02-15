@@ -2,10 +2,14 @@ public class Particle {
     PApplet obj;
     Point[] points;
     final int POINT_NUM = 30;
+    float r = 2.0;
     boolean visible = false;
-    boolean mouseFlag = false;
+    boolean drawFlag = false;
+    boolean runFlag = false;
     long startTime;
     color c = color(255);
+    float x;
+    float y;
     
     Particle(PApplet _obj) {
         points = new Point[POINT_NUM];
@@ -16,22 +20,23 @@ public class Particle {
     void setParticle(float x, float y) {
         for (int i = 0; i < POINT_NUM; i++) {
             float theta = random(2 * PI);
-            points[i] = new Point(x, y, cos(theta) * random(0.5, 3), sin(theta) * random(0.5, 3), random(5, 10));
+            points[i] = new Point(x, y, cos(theta) * random(0.5*r/2, 3*r/2), sin(theta) * random(0.5*r/2, 3*r/2), random(5*r/2, 10*r/2));
         }
         visible = true;
         startTime = millis();
     }
     
     void draw() {
-        if (mousePressed) {
-            if (!mouseFlag) {
-                setParticle(mouseX, mouseY);
-                mouseFlag = true;
+        if (runFlag) {
+            runFlag = false;
+            if (!drawFlag) {
+                setParticle(x, y);
+                drawFlag = true;
                 visible = true;
             }
         }
         else {
-            mouseFlag = false;
+            drawFlag = false;
         }
         
         if (!visible) {
@@ -42,13 +47,27 @@ public class Particle {
             p.draw();
             p.update();
         }
-        if (millis() - startTime > 2000) {
+        if (millis() - startTime > r*1000) {
             visible = false;
         }
+    }
+    
+    void drawing(float _x, float _y) {
+        this.x = _x;
+        this.y = _y;
+        runFlag = true;
     }
 
     void setColor(color _c) {
         c = _c;
+    }
+    
+    void setRadius(float _r) {
+        r = _r;
+    }
+    
+    boolean isDrawing() {
+        return visible;
     }
     
     class Point {
