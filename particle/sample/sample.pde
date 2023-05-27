@@ -2,8 +2,8 @@ Particle particle;
 
 void setup() {
     particle = new Particle(this);
-    particle.setColor(color(255, 230, 220));
-    particle.setRadius(1.7);
+    particle.setColor(color(255, 230, 220))
+    .setRadius(1.7);
     frameRate(60);
     size(500, 500);
 }
@@ -16,6 +16,7 @@ void draw() {
     }
     
     fill(255);
+    textSize(15);
     textAlign(LEFT, TOP);
-    text("isDrawing :"+particle.isDrawing(), 10, 10);
+    text("isDrawing: "+particle.isDrawing(), 5, 5);
 }

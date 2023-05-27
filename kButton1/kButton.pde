@@ -14,7 +14,13 @@ import java.lang.reflect.InvocationTargetException;
  clickButtonEvent(this.buttonName);
  ----------------------------------------*/
 
-PApplet papplet = this;  // mainのPApplet
+public class KBSetup {
+    // mainのPApplet
+    PApplet papplet;
+    KBSetup(PApplet _papplet) {
+        this.papplet = _papplet;
+    }
+}
 
 public class KButton {
     // ボタンの設定のインスタンス生成
@@ -151,7 +157,7 @@ public class KButton {
 
     // ボタンのコンストラクタ
     KButton(Object obj, String _buttonName, float _x, float _y, float _w, float _h, float _r) {
-        papplet.registerMethod("draw", this);
+        kbSetup.papplet.registerMethod("draw", this);
         this.obj = obj;
         this.buttonName = _buttonName;
         // 初期値の設定

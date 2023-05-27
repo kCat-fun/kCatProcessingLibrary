@@ -4,12 +4,16 @@
  （階層を同じにするという意味）
  ---------------------------------------------------------------------------*/
 
+// kbSetup という変数名でなければならない
+KBSetup kbSetup;
 KButton[] button = new KButton[2];
 boolean[] btnFlag = {false, false};
 boolean flag = true;
 
 void setup() {
     size(500, 500);
+    // mainのpappletを渡す
+    kbSetup = new KBSetup(this);
     // 第二引数はclickButtonEventに渡される文字列
     // (関数のあるオブジェクト, ↑, x座標, y座標, 幅, 高さ, (角丸半径(0で直角)) );
     button[0] = new KButton(this, "hoge", 50, 200, 200, 100, 20);
@@ -34,10 +38,10 @@ void setup() {
      ----------------------------------------*/
 
     button[1] = new KButton(this, "btn2", 300, 50, 100, 80, 0);
-    button[1].set.buttonColor(color(255, 200, 200), color(0, 0, 255));
-    button[1].set.buttonHoverColor(color(255, 230, 230));
-    button[1].set.label("Fun", 20);
-    button[1].set.labelColor(color(0, 0, 255));
+    button[1].set.buttonColor(color(255, 200, 200), color(0, 0, 255))
+    .buttonHoverColor(color(255, 230, 230))
+    .label("Fun", 20)
+    .labelColor(color(0, 0, 255));
 }
 
 void draw() {
