@@ -64,7 +64,7 @@ public class ClickParticle {
         return this;
     }
     
-    boolean isParticle() {
+    public boolean isParticle() {
          return visible;   
     }
 
