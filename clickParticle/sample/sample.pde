@@ -3,8 +3,8 @@ ClickParticle clickParticle;
 void setup() {
     clickParticle = new ClickParticle(this);
     clickParticle.setColor(color(200, 230, 255))
-    .setRadius(1.5);
-    size(500, 500);
+    .setRadius(2.0);
+    size(800, 500);
 }
 
 void draw() {

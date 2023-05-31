@@ -11,12 +11,12 @@ boolean[] btnFlag = {false, false};
 boolean flag = true;
 
 void setup() {
-    size(500, 500);
+    size(800, 500);
     // mainのpappletを渡す
     kbSetup = new KBSetup(this);
     // 第二引数はclickButtonEventに渡される文字列
     // (関数のあるオブジェクト, ↑, x座標, y座標, 幅, 高さ, (角丸半径(0で直角)) );
-    button[0] = new KButton(this, "hoge", 50, 200, 200, 100, 20);
+    button[0] = new KButton(this, "hoge", 50, 300, 200, 100, 20);
     // (ボタンの中の色, ボタンの外枠の色)
     button[0].set.buttonColor(color(255, 200, 200), color(0, 0, 255));
     // (ボタンにホバーした時の色)
@@ -37,7 +37,7 @@ void setup() {
      　-> ボタンの大きさを変更できる
      ----------------------------------------*/
 
-    button[1] = new KButton(this, "btn2", 300, 50, 100, 80, 0);
+    button[1] = new KButton(this, "btn2", 600, 50, 100, 80, 0);
     button[1].set.buttonColor(color(255, 200, 200), color(0, 0, 255))
     .buttonHoverColor(color(255, 230, 230))
     .label("Fun", 20)

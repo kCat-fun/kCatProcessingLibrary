@@ -35,6 +35,7 @@ public class KButton {
     boolean visible;
 
     // ボタンの設定クラス
+    // ボタンの設定クラス
     class Set {
         // x座標, y座標, 幅, 高さ, 角丸の半径
         float x;
@@ -61,6 +62,108 @@ public class KButton {
 
         // ボタンの設定のコンストラクタ
         Set() {
+            // テキストの初期Alignは（CENTER, CENTER）
+            this.align(CENTER, CENTER);
+        }
+
+        Set position(float _x, float _y) {
+            this.x = _x;
+            this.y = _y;
+            this.labelPos();
+            return this;
+        }
+
+        Set bgImage(PImage _img) {
+            img = _img;
+            return this;
+        }
+
+        Set size(float _w, float _h, float _r) {
+            this.width = _w;
+            this.height = _h;
+            this.radius = _r;
+            return this;
+        }
+
+        Set buttonColor(color _rectColor, color _rectEdgeColor) {
+            this.rectColor = _rectColor;
+            this.rectEdgeColor = _rectEdgeColor;
+            return this;
+        }
+
+        Set buttonHoverColor(color _rectHoverColor) {
+            this.rectHoverColor = _rectHoverColor;
+            return this;
+        }
+
+        Set label(String _text, float _labelSize) {
+            this.textlabel = _text;
+            this.labelSize(_labelSize);
+            this.labelPos();
+            return this;
+        }
+
+        Set label(String _text, float _labelSize, PFont _font) {
+            this.textlabel = _text;
+            this.labelSize(_labelSize);
+            this.labelFont(_font);
+            this.labelPos();
+            return this;
+        }
+
+        Set labelSize(float _labelSize) {
+            this.labelSize = _labelSize;
+            return this;
+        }
+
+        Set align(int _horizontal, int _vertical) {
+            this.horizontal = _horizontal;
+            this.vertical = _vertical;
+            this.labelPos();
+            return this;
+        }
+
+        void labelPos() {
+            if (this.labelSize > 0) {
+                switch(this.horizontal) {
+                case CENTER:
+                    this.labelX = this.x + this.width / 2;
+                    break;
+                case LEFT:
+                    this.labelX = this.x;
+                    break;
+                case RIGHT:
+                    this.labelX = this.x + this.width;
+                    break;
+                default:
+                    println("Warning:Invalid Align");
+                    throw new RuntimeException();
+                }
+                switch(this.vertical) {
+                case CENTER:
+                    this.labelY = this.y + this.height / 2;
+                    break;
+                case TOP:
+                    this.labelY = this.y;
+                    break;
+                case BOTTOM:
+                    this.labelY = this.y + this.height;
+                    break;
+                default:
+                    println("Warning:Invalid Align");
+                    throw new RuntimeException();
+                }
+            }
+        }
+
+        Set labelColor(color _textColor) {
+            this.textColor = _textColor;
+            return this;
+        }
+
+        Set labelFont(PFont _font) {
+            this.font = _font;
+            return this;
         }
     }
 
@@ -72,13 +175,13 @@ public class KButton {
         // 初期値の設定
         this.set = new Set();
         // テキストの初期Alignは（CENTER, CENTER）
-        this.setAlign(CENTER, CENTER);
-        this.setPosition(_x, _y);
-        this.setSize(_w, _h, _r);
-        this.setButtonColor(200, 0);
-        this.setButtonHoverColor(255);
-        this.setLabelColor(0);
-        this.setLabel("", 0);
+        this.set.align(CENTER, CENTER)
+        .position(_x, _y)
+        .size(_w, _h, _r)
+        .buttonColor(200, 0)
+        .buttonHoverColor(255)
+        .labelColor(0)
+        .label("", 0);
         this.clickFlag = false;
         this.clickOldOnFlag = false;
         this.clickOnFlag = false;
@@ -176,106 +279,5 @@ public class KButton {
 
     void visible(boolean disp) {
         this.visible = disp;
-    }
-
-    KButton setPosition(float _x, float _y) {
-        set.x = _x;
-        set.y = _y;
-        setLabelPos();
-        return this;
-    }
-
-    KButton setBackgroundImage(PImage _img) {
-        set.img = _img;
-        return this;
-    }
-
-    KButton setSize(float _w, float _h, float _r) {
-        set.width = _w;
-        set.height = _h;
-        set.radius = _r;
-        return this;
-    }
-
-    KButton setButtonColor(color _rectColor, color _rectEdgeColor) {
-        set.rectColor = _rectColor;
-        set.rectEdgeColor = _rectEdgeColor;
-        return this;
-    }
-
-    KButton setButtonHoverColor(color _rectHoverColor) {
-        set.rectHoverColor = _rectHoverColor;
-        return this;
-    }
-
-    KButton setLabel(String _text, float _labelSize) {
-        set.textlabel = _text;
-        setLabelSize(_labelSize);
-        setLabelPos();
-        return this;
-    }
-
-    KButton setLabel(String _text, float _labelSize, PFont _font) {
-        set.textlabel = _text;
-        setLabelSize(_labelSize);
-        setLabelFont(_font);
-        setLabelPos();
-        return this;
-    }
-
-    KButton setLabelSize(float _labelSize) {
-        set.labelSize = _labelSize;
-        return this;
-    }
-
-    KButton setAlign(int _horizontal, int _vertical) {
-        set.horizontal = _horizontal;
-        set.vertical = _vertical;
-        setLabelPos();
-        return this;
-    }
-
-    KButton setLabelPos() {
-        if (set.labelSize > 0) {
-            switch(set.horizontal) {
-            case CENTER:
-                set.labelX = set.x + set.width / 2;
-                break;
-            case LEFT:
-                set.labelX = set.x;
-                break;
-            case RIGHT:
-                set.labelX = set.x + set.width;
-                break;
-            default:
-                println("Warning:Invalid Align");
-                throw new RuntimeException();
-            }
-            switch(set.vertical) {
-            case CENTER:
-                set.labelY = set.y + set.height / 2;
-                break;
-            case TOP:
-                set.labelY = set.y;
-                break;
-            case BOTTOM:
-                set.labelY = set.y + set.height;
-                break;
-            default:
-                println("Warning:Invalid Align");
-                throw new RuntimeException();
-            }
-        }
-        return this;
-    }
-
-    KButton setLabelColor(color _textColor) {
-        set.textColor = _textColor;
-        return this;
-    }
-
-    KButton setLabelFont(PFont _font) {
-        set.font = _font;
-        return this;
     }
 }

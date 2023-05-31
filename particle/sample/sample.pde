@@ -5,7 +5,7 @@ void setup() {
     particle.setColor(color(255, 230, 220))
     .setRadius(1.7);
     frameRate(60);
-    size(500, 500);
+    size(800, 500);
 }
 
 void draw() {
