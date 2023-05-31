@@ -21,14 +21,13 @@ public class ClickParticle {
         obj.registerMethod("draw", this);
     }
 
-    ClickParticle setParticle(float x, float y) {
+    private void setParticle(float x, float y) {
         for (int i = 0; i < POINT_NUM; i++) {
             float theta = random(2 * PI);
             points[i] = new Point(x, y, cos(theta) * random(0.5*r/2, 3*r/2), sin(theta) * random(0.5*r/2, 3*r/2), random(5*r/2, 10*r/2));
         }
         visible = true;
         startTime = millis();
-        return this;
     }
 
     void draw() {
