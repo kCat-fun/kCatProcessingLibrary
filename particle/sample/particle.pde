@@ -24,14 +24,13 @@ public class Particle {
         obj.registerMethod("draw", this);
     }
     
-    Particle setParticle(float x, float y) {
+    private void setParticle(float x, float y) {
         for (int i = 0; i < POINT_NUM; i++) {
             float theta = random(2 * PI);
             points[i] = new Point(x, y, cos(theta) * random(0.5*r/2, 3*r/2), sin(theta) * random(0.5*r/2, 3*r/2), random(5*r/2, 10*r/2));
         }
         visible = true;
         startTime = millis();
-        return this;
     }
     
     void draw() {
@@ -60,24 +59,23 @@ public class Particle {
         }
     }
     
-    Particle drawing(float _x, float _y) {
+    private void drawing(float _x, float _y) {
         this.x = _x;
         this.y = _y;
         runFlag = true;
-        return this;
     }
 
-    Particle setColor(color _c) {
+    public Particle setColor(color _c) {
         c = _c;
         return this;
     }
     
-    Particle setRadius(float _r) {
+    public Particle setRadius(float _r) {
         r = _r;
         return this;
     }
     
-    boolean isDrawing() {
+    public boolean isDrawing() {
         return visible;
     }
     

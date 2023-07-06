@@ -35,6 +35,7 @@ public class KButton {
     boolean visible;
 
     // ボタンの設定クラス
+    // ボタンの設定クラス
     class Set {
         // x座標, y座標, 幅, 高さ, 角丸の半径
         float x;
@@ -65,52 +66,61 @@ public class KButton {
             this.align(CENTER, CENTER);
         }
 
-        void position(float _x, float _y) {
+        Set position(float _x, float _y) {
             this.x = _x;
             this.y = _y;
             this.labelPos();
+            return this;
         }
 
-        void bgImage(PImage _img) {
+        Set bgImage(PImage _img) {
             img = _img;
+            return this;
         }
 
-        void size(float _w, float _h, float _r) {
+        Set size(float _w, float _h, float _r) {
             this.width = _w;
             this.height = _h;
             this.radius = _r;
+            return this;
         }
 
-        void buttonColor(color _rectColor, color _rectEdgeColor) {
+        Set buttonColor(color _rectColor, color _rectEdgeColor) {
             this.rectColor = _rectColor;
             this.rectEdgeColor = _rectEdgeColor;
+            return this;
         }
 
-        void buttonHoverColor(color _rectHoverColor) {
+        Set buttonHoverColor(color _rectHoverColor) {
             this.rectHoverColor = _rectHoverColor;
+            return this;
         }
 
-        void label(String _text, float _labelSize) {
+        Set label(String _text, float _labelSize) {
             this.textlabel = _text;
             this.labelSize(_labelSize);
             this.labelPos();
+            return this;
         }
 
-        void label(String _text, float _labelSize, PFont _font) {
+        Set label(String _text, float _labelSize, PFont _font) {
             this.textlabel = _text;
             this.labelSize(_labelSize);
             this.labelFont(_font);
             this.labelPos();
+            return this;
         }
 
-        void labelSize(float _labelSize) {
+        Set labelSize(float _labelSize) {
             this.labelSize = _labelSize;
+            return this;
         }
 
-        void align(int _horizontal, int _vertical) {
+        Set align(int _horizontal, int _vertical) {
             this.horizontal = _horizontal;
             this.vertical = _vertical;
             this.labelPos();
+            return this;
         }
 
         void labelPos() {
@@ -146,12 +156,14 @@ public class KButton {
             }
         }
 
-        void labelColor(color _textColor) {
+        Set labelColor(color _textColor) {
             this.textColor = _textColor;
+            return this;
         }
 
-        void labelFont(PFont _font) {
+        Set labelFont(PFont _font) {
             this.font = _font;
+            return this;
         }
     }
 
@@ -162,13 +174,14 @@ public class KButton {
         this.buttonName = _buttonName;
         // 初期値の設定
         this.set = new Set();
-        this.set.position(_x, _y);
-        this.set.size(_w, _h, _r);
-        this.set.buttonColor(200, 0);
-        this.set.buttonHoverColor(255);
-        this.set.labelColor(0);
-        this.set.label("", 0);
-        this.set.align(CENTER, CENTER);
+        // テキストの初期Alignは（CENTER, CENTER）
+        this.set.align(CENTER, CENTER)
+        .position(_x, _y)
+        .size(_w, _h, _r)
+        .buttonColor(200, 0)
+        .buttonHoverColor(255)
+        .labelColor(0)
+        .label("", 0);
         this.clickFlag = false;
         this.clickOldOnFlag = false;
         this.clickOnFlag = false;

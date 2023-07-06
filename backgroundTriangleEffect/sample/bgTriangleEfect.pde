@@ -26,13 +26,13 @@ class BgTriangleEffect {
         }
     }
 
-    BgTriangleEffect triangleFill(color c) {
+    public BgTriangleEffect triangleFill(color c) {
         bg_effect_color = c;
         this.create();
         return this;
     }
 
-    BgTriangleEffect volume(int n) {
+    public BgTriangleEffect volume(int n) {
         tri_len = n;
         this.create();
         return this;
