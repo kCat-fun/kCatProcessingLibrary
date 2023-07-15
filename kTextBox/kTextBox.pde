@@ -65,7 +65,7 @@ public class KTextBox {
         pop();
     }
     
-    public void charType() {
+    public void keyType() {
         if (!active) return;
         
         if (('A' <= keyCode && keyCode <= 'Z') || ('0' <= keyCode && keyCode<= '9') || key == ' ') {
@@ -97,6 +97,11 @@ public class KTextBox {
     
     public KTextBox setFont(String font) {
         textFont(createFont(font, textSize));
+        return this;
+    }
+    
+    public KTextBox setText(String text) {
+        this.text = text;
         return this;
     }
     

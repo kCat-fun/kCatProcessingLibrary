@@ -15,5 +15,8 @@ void draw() {
 }
 
 void keyPressed() {
-    textBox.charType();
+    textBox.keyType();
+    if(keyCode == ENTER) {
+         textBox.setText("");   
+    }
 }
