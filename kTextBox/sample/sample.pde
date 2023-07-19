@@ -18,7 +18,7 @@ void draw() {
 
 void keyPressed() {
     textBox.keyType();
-    if (keyCode == ENTER) {
+    if (keyCode == ENTER && textBox.getActive()) {
         text = textBox.getText();
         textBox.setText("");
     }

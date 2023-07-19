@@ -11,6 +11,7 @@ public class KTextBox {
     private int cursorPoint;
     private boolean clickFlag, clickOnFlag, clickOldOnFlag;
     private boolean visible;
+    private boolean cursorChangeFlag;
     private PApplet papplet;
 
     KTextBox(PApplet papplet, String text, float x, float y, float w, float h) {
@@ -36,6 +37,7 @@ public class KTextBox {
         this.clickOnFlag = false;
         this.clickOldOnFlag = false;
         this.cursorPoint = 0;
+        this.cursorChangeFlag = false;
         this.setFont("Meiryo");
     }
 
@@ -69,7 +71,14 @@ public class KTextBox {
             active = false;
             break;
         }
-        getSurface().setCursor(checkHover() ? Cursor.TEXT_CURSOR : Cursor.DEFAULT_CURSOR);
+        if(checkHover()) {
+            getSurface().setCursor(Cursor.TEXT_CURSOR);
+            cursorChangeFlag = true;
+        }
+        else if(cursorChangeFlag) {
+            getSurface().setCursor(Cursor.DEFAULT_CURSOR);
+            cursorChangeFlag = false;
+        }
 
         pop();
     }
@@ -125,6 +134,10 @@ public class KTextBox {
 
     public String getText() {
         return text;
+    }
+    
+    public boolean getActive() {
+         return active;   
     }
 
     // マウスがテキストボックスにホバーしてるかの判別関数
