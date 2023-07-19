@@ -36,6 +36,7 @@ public class KTextBox {
         this.clickOnFlag = false;
         this.clickOldOnFlag = false;
         this.cursorPoint = 0;
+        this.setFont("Meiryo");
     }
 
     public void draw() {
@@ -80,7 +81,7 @@ public class KTextBox {
             cursorPoint = min(text.length(), ++cursorPoint);
         } else if (keyCode == LEFT) {
             cursorPoint = max(0, --cursorPoint);
-        } else if ((('A' <= keyCode && keyCode <= 'Z') || ('0' <= keyCode && keyCode<= '9') || key == ' ') && textWidth(text + key) + CURSOR_MARGIN <= size.x) {
+        } else if ((('A' <= keyCode && keyCode <= 'Z') || ('0' <= keyCode && keyCode<= '9') || key == ' ') && textWidth(text + key) + CURSOR_MARGIN + 4 <= size.x) {
             text = text.substring(0, cursorPoint) + key + text.substring(cursorPoint, text.length());
             cursorPoint++;
         } else if (keyCode == BACKSPACE && text.length() > 0 && cursorPoint > 0) {
